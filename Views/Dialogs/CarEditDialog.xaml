@@ -1,0 +1,168 @@
+<Window x:Class="CarDealership.Views.Dialogs.CarEditDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Автомобиль"
+        Width="650" Height="680" MinWidth="560" MinHeight="500"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResizeWithGrip"
+        Background="{DynamicResource BackgroundDarkBrush}">
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="TxtTitle" Text="Добавить автомобиль" Grid.Row="0"
+                   FontSize="22" FontWeight="Bold"
+                   Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,0,0,25"/>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Brand -->
+                <StackPanel Grid.Column="0" Grid.Row="0" Margin="0,0,0,15">
+                    <TextBlock Text="Марка *" Style="{DynamicResource FormLabel}"/>
+                    <TextBox x:Name="TxtBrand" Style="{DynamicResource ModernTextBox}"/>
+                </StackPanel>
+
+                <!-- Model -->
+                <StackPanel Grid.Column="2" Grid.Row="0" Margin="0,0,0,15">
+                    <TextBlock Text="Модель *" Style="{DynamicResource FormLabel}"/>
+                    <TextBox x:Name="TxtModel" Style="{DynamicResource ModernTextBox}"/>
+                </StackPanel>
+
+                <!-- Year -->
+                <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,0,0,15">
+                    <TextBlock Text="Год выпуска" Style="{DynamicResource FormLabel}"/>
+                    <TextBox x:Name="TxtYear" Style="{DynamicResource ModernTextBox}"/>
+                </StackPanel>
+
+                <!-- Color -->
+                <StackPanel Grid.Column="2" Grid.Row="1" Margin="0,0,0,15">
+                    <TextBlock Text="Цвет" Style="{DynamicResource FormLabel}"/>
+                    <TextBox x:Name="TxtColor" Style="{DynamicResource ModernTextBox}"/>
+                </StackPanel>
+
+                <!-- Price -->
+                <StackPanel Grid.Column="0" Grid.Row="2" Margin="0,0,0,15">
+                    <TextBlock Text="Цена (₽)" Style="{DynamicResource FormLabel}"/>
+                    <TextBox x:Name="TxtPrice" Style="{DynamicResource ModernTextBox}"/>
+                </StackPanel>
+
+                <!-- Mileage -->
+                <StackPanel Grid.Column="2" Grid.Row="2" Margin="0,0,0,15">
+                    <TextBlock Text="Пробег (км)" Style="{DynamicResource FormLabel}"/>
+                    <TextBox x:Name="TxtMileage" Style="{DynamicResource ModernTextBox}"/>
+                </StackPanel>
+
+                <!-- Fuel Type -->
+                <StackPanel Grid.Column="0" Grid.Row="3" Margin="0,0,0,15">
+                    <TextBlock Text="Тип топлива" Style="{DynamicResource FormLabel}"/>
+                    <ComboBox x:Name="CmbFuelType" Style="{DynamicResource ModernComboBox}">
+                        <ComboBoxItem Content="Бензин" IsSelected="True"/>
+                        <ComboBoxItem Content="Дизель"/>
+                        <ComboBoxItem Content="Гибрид"/>
+                        <ComboBoxItem Content="Электро"/>
+                        <ComboBoxItem Content="Газ"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <!-- Transmission -->
+                <StackPanel Grid.Column="2" Grid.Row="3" Margin="0,0,0,15">
+                    <TextBlock Text="Трансмиссия" Style="{DynamicResource FormLabel}"/>
+                    <ComboBox x:Name="CmbTransmission" Style="{DynamicResource ModernComboBox}">
+                        <ComboBoxItem Content="Автомат" IsSelected="True"/>
+                        <ComboBoxItem Content="Механика"/>
+                        <ComboBoxItem Content="Вариатор"/>
+                        <ComboBoxItem Content="DSG"/>
+                        <ComboBoxItem Content="Робот"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <!-- Body Type -->
+                <StackPanel Grid.Column="0" Grid.Row="4" Margin="0,0,0,15">
+                    <TextBlock Text="Тип кузова" Style="{DynamicResource FormLabel}"/>
+                    <ComboBox x:Name="CmbBodyType" Style="{DynamicResource ModernComboBox}">
+                        <ComboBoxItem Content="Седан" IsSelected="True"/>
+                        <ComboBoxItem Content="Хэтчбек"/>
+                        <ComboBoxItem Content="Кроссовер"/>
+                        <ComboBoxItem Content="Внедорожник"/>
+                        <ComboBoxItem Content="Универсал"/>
+                        <ComboBoxItem Content="Купе"/>
+                        <ComboBoxItem Content="Кабриолет"/>
+                        <ComboBoxItem Content="Лифтбек"/>
+                        <ComboBoxItem Content="Минивэн"/>
+                        <ComboBoxItem Content="Пикап"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <!-- Engine Volume -->
+                <StackPanel Grid.Column="2" Grid.Row="4" Margin="0,0,0,15">
+                    <TextBlock Text="Объём двигателя (л)" Style="{DynamicResource FormLabel}"/>
+                    <TextBox x:Name="TxtEngineVolume" Style="{DynamicResource ModernTextBox}"/>
+                </StackPanel>
+
+                <!-- VIN -->
+                <StackPanel Grid.Column="0" Grid.Row="5" Margin="0,0,0,15">
+                    <TextBlock Text="VIN номер" Style="{DynamicResource FormLabel}"/>
+                    <TextBox x:Name="TxtVIN" Style="{DynamicResource ModernTextBox}"/>
+                </StackPanel>
+
+                <!-- Status -->
+                <StackPanel Grid.Column="2" Grid.Row="5" Margin="0,0,0,15">
+                    <TextBlock Text="Статус" Style="{DynamicResource FormLabel}"/>
+                    <ComboBox x:Name="CmbStatus" Style="{DynamicResource ModernComboBox}">
+                        <ComboBoxItem Content="Available" IsSelected="True"/>
+                        <ComboBoxItem Content="Reserved"/>
+                        <ComboBoxItem Content="Sold"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <!-- Description -->
+                <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="6" Margin="0,0,0,15">
+                    <TextBlock Text="Описание / Комплектация" Style="{DynamicResource FormLabel}"/>
+                    <TextBox x:Name="TxtDescription" Style="{DynamicResource ModernTextBox}"
+                             Height="80" TextWrapping="Wrap" AcceptsReturn="True"
+                             VerticalScrollBarVisibility="Auto"/>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right"
+                    Margin="0,20,0,0">
+            <Button Content="Отмена" Padding="20,10" Margin="0,0,10,0"
+                    Click="BtnCancel_Click" Background="{DynamicResource BackgroundCardBrush}"
+                    Foreground="{DynamicResource TextPrimaryBrush}" BorderThickness="0"
+                    Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="BtnSave" Content="Сохранить" Padding="25,10"
+                    Style="{DynamicResource PrimaryButton}" Click="BtnSave_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

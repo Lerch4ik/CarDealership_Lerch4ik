@@ -1,0 +1,458 @@
+<Page x:Class="CarDealership.Views.Pages.ReportsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="{DynamicResource BackgroundDarkBrush}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="30,25">
+
+            <!-- Header + Period Filter -->
+            <Grid Margin="0,0,0,25">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Text="Аналитика и отчёты" FontSize="26" FontWeight="Bold"
+                               Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    <TextBlock x:Name="TxtPeriodLabel" FontSize="14"
+                               Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,4,0,0"/>
+                </StackPanel>
+                <!-- Period selector -->
+                <Border Grid.Column="1" Background="{DynamicResource BackgroundCardBrush}"
+                        CornerRadius="10" Padding="6" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="BtnPeriod1" Content="Месяц" Padding="14,7"
+                                Click="BtnPeriod_Click" Tag="month"
+                                Background="{DynamicResource AccentBrush}" Foreground="White"
+                                BorderThickness="0" Cursor="Hand" FontSize="12" FontWeight="SemiBold">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="7" Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="BtnPeriod2" Content="Квартал" Padding="14,7" Margin="4,0,0,0"
+                                Click="BtnPeriod_Click" Tag="quarter"
+                                Background="Transparent" Foreground="{DynamicResource TextSecondaryBrush}"
+                                BorderThickness="0" Cursor="Hand" FontSize="12">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="Bd" Background="{TemplateBinding Background}" CornerRadius="7" Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource BackgroundHoverBrush}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="BtnPeriod3" Content="Год" Padding="14,7" Margin="4,0,0,0"
+                                Click="BtnPeriod_Click" Tag="year"
+                                Background="Transparent" Foreground="{DynamicResource TextSecondaryBrush}"
+                                BorderThickness="0" Cursor="Hand" FontSize="12">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="Bd" Background="{TemplateBinding Background}" CornerRadius="7" Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource BackgroundHoverBrush}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="BtnPeriod4" Content="Всё время" Padding="14,7" Margin="4,0,0,0"
+                                Click="BtnPeriod_Click" Tag="all"
+                                Background="Transparent" Foreground="{DynamicResource TextSecondaryBrush}"
+                                BorderThickness="0" Cursor="Hand" FontSize="12">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="Bd" Background="{TemplateBinding Background}" CornerRadius="7" Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource BackgroundHoverBrush}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- KPI Row 1 - Sales metrics -->
+            <Grid Margin="0,0,0,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" CornerRadius="14" Padding="20,16">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="{DynamicResource KpiGreenStart}" Offset="0"/>
+                            <GradientStop Color="{DynamicResource KpiGreenEnd}" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <StackPanel>
+                        <TextBlock Text="💰 Выручка" FontSize="12" Foreground="{DynamicResource AccentGreenBrush}"/>
+                        <TextBlock x:Name="TxtRevenue" Text="₽ 0" FontSize="24" FontWeight="Bold"
+                                   Foreground="White" Margin="0,6,0,0"/>
+                        <TextBlock x:Name="TxtRevenueChange" Text="" FontSize="11" Foreground="{DynamicResource AccentGreenBrush}" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" CornerRadius="14" Padding="20,16">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="{DynamicResource KpiBlueStart}" Offset="0"/>
+                            <GradientStop Color="{DynamicResource KpiBlueEnd}" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <StackPanel>
+                        <TextBlock Text="📦 Продаж" FontSize="12" Foreground="{DynamicResource AccentBrush}"/>
+                        <TextBlock x:Name="TxtSalesCount" Text="0" FontSize="24" FontWeight="Bold"
+                                   Foreground="White" Margin="0,6,0,0"/>
+                        <TextBlock x:Name="TxtSalesChange" Text="" FontSize="11" Foreground="{DynamicResource AccentBrush}" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="4" CornerRadius="14" Padding="20,16">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="{DynamicResource KpiOrangeStart}" Offset="0"/>
+                            <GradientStop Color="{DynamicResource KpiOrangeEnd}" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <StackPanel>
+                        <TextBlock Text="📊 Средний чек" FontSize="12" Foreground="{DynamicResource AccentOrangeBrush}"/>
+                        <TextBlock x:Name="TxtAvgDeal" Text="₽ 0" FontSize="24" FontWeight="Bold"
+                                   Foreground="White" Margin="0,6,0,0"/>
+                        <TextBlock x:Name="TxtAvgChange" Text="" FontSize="11" Foreground="{DynamicResource AccentOrangeBrush}" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="6" CornerRadius="14" Padding="20,16">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="{DynamicResource KpiPurpleStart}" Offset="0"/>
+                            <GradientStop Color="{DynamicResource KpiPurpleEnd}" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <StackPanel>
+                        <TextBlock Text="🔧 Сервис" FontSize="12" Foreground="{DynamicResource AccentPurpleBrush}"/>
+                        <TextBlock x:Name="TxtServiceRev" Text="₽ 0" FontSize="24" FontWeight="Bold"
+                                   Foreground="White" Margin="0,6,0,0"/>
+                        <TextBlock x:Name="TxtServiceCount" Text="0 заявок" FontSize="11" Foreground="{DynamicResource AccentPurpleBrush}" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- KPI Row 2 - secondary metrics -->
+            <Grid Margin="0,0,0,25">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Style="{DynamicResource CardBorder}" Padding="18,14">
+                    <StackPanel>
+                        <TextBlock Text="Новых клиентов" FontSize="11" Foreground="{DynamicResource TextMutedBrush}"/>
+                        <TextBlock x:Name="TxtNewClients" Text="0" FontSize="20" FontWeight="Bold"
+                                   Foreground="{DynamicResource AccentGreenBrush}" Margin="0,5,0,0"/>
+                        <TextBlock x:Name="TxtNewClientsNote" Text="" FontSize="11"
+                                   Foreground="{DynamicResource TextMutedBrush}" Margin="0,3,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Style="{DynamicResource CardBorder}" Padding="18,14">
+                    <StackPanel>
+                        <TextBlock Text="Конверсия (Продано / Всего)" FontSize="11" Foreground="{DynamicResource TextMutedBrush}"/>
+                        <TextBlock x:Name="TxtConversion" Text="0%" FontSize="20" FontWeight="Bold"
+                                   Foreground="{DynamicResource AccentBrush}" Margin="0,5,0,0"/>
+                        <TextBlock x:Name="TxtConversionNote" Text="" FontSize="11"
+                                   Foreground="{DynamicResource TextMutedBrush}" Margin="0,3,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="4" Style="{DynamicResource CardBorder}" Padding="18,14">
+                    <StackPanel>
+                        <TextBlock Text="Макс. сделка за период" FontSize="11" Foreground="{DynamicResource TextMutedBrush}"/>
+                        <TextBlock x:Name="TxtMaxDeal" Text="₽ 0" FontSize="20" FontWeight="Bold"
+                                   Foreground="{DynamicResource AccentOrangeBrush}" Margin="0,5,0,0"/>
+                        <TextBlock x:Name="TxtMaxDealNote" Text="" FontSize="11"
+                                   Foreground="{DynamicResource TextMutedBrush}" Margin="0,3,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="6" Style="{DynamicResource CardBorder}" Padding="18,14">
+                    <StackPanel>
+                        <TextBlock Text="Суммарные скидки" FontSize="11" Foreground="{DynamicResource TextMutedBrush}"/>
+                        <TextBlock x:Name="TxtDiscounts" Text="₽ 0" FontSize="20" FontWeight="Bold"
+                                   Foreground="{DynamicResource AccentRedBrush}" Margin="0,5,0,0"/>
+                        <TextBlock x:Name="TxtDiscountsNote" Text="" FontSize="11"
+                                   Foreground="{DynamicResource TextMutedBrush}" Margin="0,3,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Row: Managers + Payment Methods -->
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Sales by Manager with progress bars -->
+                <Border Grid.Column="0" Style="{DynamicResource CardBorder}">
+                    <StackPanel>
+                        <TextBlock Text="Продажи по менеджерам" FontSize="16" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,0,0,15"/>
+                        <DataGrid x:Name="GridManagerSales" Style="{DynamicResource ModernDataGrid}"
+                                  MaxHeight="240" CanUserResizeColumns="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Менеджер" Binding="{Binding ManagerName}" Width="2*" MinWidth="110"/>
+                                <DataGridTextColumn Header="Продаж" Binding="{Binding SalesCount}" Width="60" MinWidth="50"/>
+                                <DataGridTextColumn Header="Выручка" Binding="{Binding TotalRevenue, StringFormat=\{0:N0\} ₽}" Width="*" MinWidth="110"/>
+                                <DataGridTextColumn Header="Средний чек" Binding="{Binding AvgSale, StringFormat=\{0:N0\} ₽}" Width="*" MinWidth="100"/>
+                                <DataGridTextColumn Header="Доля, %" Binding="{Binding SharePercent, StringFormat=\{0:N1\}%}" Width="70" MinWidth="60"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Payment Methods visual -->
+                <Border Grid.Column="2" Style="{DynamicResource CardBorder}">
+                    <StackPanel>
+                        <TextBlock Text="Способы оплаты" FontSize="16" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,0,0,15"/>
+                        <ItemsControl x:Name="IcPayments">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0,0,0,12">
+                                        <Grid>
+                                            <TextBlock Text="{Binding Method}" FontSize="13"
+                                                       Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                <TextBlock Text="{Binding Count}" FontSize="12"
+                                                           Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,8,0"/>
+                                                <TextBlock Text="{Binding Percent, StringFormat=\{0:N0\}%}" FontSize="12"
+                                                           Foreground="{DynamicResource AccentBrush}" FontWeight="SemiBold"/>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Border Height="6" CornerRadius="3" Background="{DynamicResource BackgroundHoverBrush}" Margin="0,5,0,0">
+                                            <Border x:Name="Bar" Height="6" CornerRadius="3"
+                                                    Width="{Binding BarWidth}"
+                                                    HorizontalAlignment="Left">
+                                                <Border.Background>
+                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                        <GradientStop Color="{DynamicResource AccentColor}" Offset="0"/>
+                                                        <GradientStop Color="{DynamicResource AccentPurple}" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </Border.Background>
+                                            </Border>
+                                        </Border>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Row: Brand Sales + Car Status -->
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Sales by Brand -->
+                <Border Grid.Column="0" Style="{DynamicResource CardBorder}">
+                    <StackPanel>
+                        <TextBlock Text="Продажи по маркам" FontSize="16" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,0,0,15"/>
+                        <DataGrid x:Name="GridBrandSales" Style="{DynamicResource ModernDataGrid}"
+                                  MaxHeight="240" CanUserResizeColumns="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Марка" Binding="{Binding Brand}" Width="*" MinWidth="80"/>
+                                <DataGridTextColumn Header="Продано" Binding="{Binding Count}" Width="70" MinWidth="60"/>
+                                <DataGridTextColumn Header="Выручка" Binding="{Binding Revenue, StringFormat=\{0:N0\} ₽}" Width="*" MinWidth="110"/>
+                                <DataGridTextColumn Header="Доля" Binding="{Binding Percent, StringFormat=\{0:N1\}%}" Width="70" MinWidth="60"/>
+                                <DataGridTextColumn Header="Ср. цена" Binding="{Binding AvgPrice, StringFormat=\{0:N0\} ₽}" Width="*" MinWidth="100"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Car fleet status visual -->
+                <Border Grid.Column="2" Style="{DynamicResource CardBorder}">
+                    <StackPanel>
+                        <TextBlock Text="Состояние автопарка" FontSize="16" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,0,0,20"/>
+
+                        <Border CornerRadius="10" Padding="15,12" Margin="0,0,0,10" Background="{DynamicResource FleetGreenBgBrush}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Width="8" Height="8" Fill="{DynamicResource AccentGreenBrush}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                        <TextBlock Text="Доступных" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="12"/>
+                                    </StackPanel>
+                                    <TextBlock x:Name="TxtFleetAvailable" Text="0" FontSize="26" FontWeight="Bold"
+                                               Foreground="{DynamicResource AccentGreenBrush}" Margin="0,4,0,0"/>
+                                </StackPanel>
+                                <TextBlock Grid.Column="1" x:Name="TxtFleetAvailablePct" Text="0%"
+                                           FontSize="14" Foreground="{DynamicResource AccentGreenBrush}" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                            </Grid>
+                        </Border>
+
+                        <Border CornerRadius="10" Padding="15,12" Margin="0,0,0,10" Background="{DynamicResource FleetOrangeBgBrush}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Width="8" Height="8" Fill="{DynamicResource AccentOrangeBrush}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                        <TextBlock Text="Зарезервировано" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="12"/>
+                                    </StackPanel>
+                                    <TextBlock x:Name="TxtFleetReserved" Text="0" FontSize="26" FontWeight="Bold"
+                                               Foreground="{DynamicResource AccentOrangeBrush}" Margin="0,4,0,0"/>
+                                </StackPanel>
+                                <TextBlock Grid.Column="1" x:Name="TxtFleetReservedPct" Text="0%"
+                                           FontSize="14" Foreground="{DynamicResource AccentOrangeBrush}" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                            </Grid>
+                        </Border>
+
+                        <Border CornerRadius="10" Padding="15,12" Background="{DynamicResource FleetBlueBgBrush}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Width="8" Height="8" Fill="{DynamicResource AccentBrush}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                        <TextBlock Text="Продано" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="12"/>
+                                    </StackPanel>
+                                    <TextBlock x:Name="TxtFleetSold" Text="0" FontSize="26" FontWeight="Bold"
+                                               Foreground="{DynamicResource AccentBrush}" Margin="0,4,0,0"/>
+                                </StackPanel>
+                                <TextBlock Grid.Column="1" x:Name="TxtFleetSoldPct" Text="0%"
+                                           FontSize="14" Foreground="{DynamicResource AccentBrush}" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Top Customers + Service analysis row -->
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Top Customers -->
+                <Border Grid.Column="0" Style="{DynamicResource CardBorder}">
+                    <StackPanel>
+                        <TextBlock Text="ТОП-10 клиентов по объёму" FontSize="16" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,0,0,15"/>
+                        <DataGrid x:Name="GridTopCustomers" Style="{DynamicResource ModernDataGrid}"
+                                  MaxHeight="260" CanUserResizeColumns="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="#" Binding="{Binding Rank}" Width="35" MinWidth="30"/>
+                                <DataGridTextColumn Header="Клиент" Binding="{Binding CustomerName}" Width="2*" MinWidth="110"/>
+                                <DataGridTextColumn Header="Покупок" Binding="{Binding PurchaseCount}" Width="65" MinWidth="55"/>
+                                <DataGridTextColumn Header="Сумма" Binding="{Binding TotalSpent, StringFormat=\{0:N0\} ₽}" Width="*" MinWidth="110"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Service analysis -->
+                <Border Grid.Column="2" Style="{DynamicResource CardBorder}">
+                    <StackPanel>
+                        <TextBlock Text="Сервис: типы работ" FontSize="16" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,0,0,15"/>
+                        <DataGrid x:Name="GridServiceTypes" Style="{DynamicResource ModernDataGrid}"
+                                  MaxHeight="260" CanUserResizeColumns="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Тип" Binding="{Binding ServiceType}" Width="*" MinWidth="90"/>
+                                <DataGridTextColumn Header="Кол-во" Binding="{Binding Count}" Width="65" MinWidth="55"/>
+                                <DataGridTextColumn Header="Выручка" Binding="{Binding Revenue, StringFormat=\{0:N0\} ₽}" Width="*" MinWidth="100"/>
+                                <DataGridTextColumn Header="Доля" Binding="{Binding Percent, StringFormat=\{0:N1\}%}" Width="60" MinWidth="50"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Monthly sales trend -->
+            <Border Style="{DynamicResource CardBorder}">
+                <StackPanel>
+                    <TextBlock Text="Продажи по месяцам (текущий год)" FontSize="16" FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,0,0,15"/>
+                    <Grid x:Name="GridMonthlyChart" Height="120">
+                        <ItemsControl x:Name="IcMonthly">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Rows="1"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="3,0" VerticalAlignment="Bottom">
+                                        <TextBlock Text="{Binding RevenueShort}" FontSize="9"
+                                                   Foreground="{DynamicResource TextMutedBrush}"
+                                                   HorizontalAlignment="Center" Margin="0,0,0,3"/>
+                                        <Border CornerRadius="4,4,0,0" Height="{Binding BarH}"
+                                                HorizontalAlignment="Stretch" MinHeight="4">
+                                            <Border.Background>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                    <GradientStop Color="{DynamicResource AccentColor}" Offset="0"/>
+                                                    <GradientStop Color="{DynamicResource AccentHoverColor}" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                        <TextBlock Text="{Binding MonthShort}" FontSize="10"
+                                                   Foreground="{DynamicResource TextSecondaryBrush}"
+                                                   HorizontalAlignment="Center" Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

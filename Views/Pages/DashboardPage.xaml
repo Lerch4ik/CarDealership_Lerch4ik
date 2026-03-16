@@ -1,0 +1,250 @@
+<Page x:Class="CarDealership.Views.Pages.DashboardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="{DynamicResource BackgroundDarkBrush}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="30,25">
+
+            <!-- Header -->
+            <TextBlock Text="Дашборд" FontSize="26" FontWeight="Bold"
+                       Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,0,0,5"/>
+            <TextBlock x:Name="TxtGreeting" FontSize="14"
+                       Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,0,25"/>
+
+            <!-- KPI Cards Row -->
+            <Grid Margin="0,0,0,25">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Total Cars -->
+                <Border Grid.Column="0" CornerRadius="14" Padding="22,18">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="{DynamicResource KpiBlueStart}" Offset="0"/>
+                            <GradientStop Color="{DynamicResource KpiBlueEnd}" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <StackPanel>
+                        <TextBlock Text="🚘" FontSize="28" Margin="0,0,0,8"/>
+                        <TextBlock x:Name="TxtTotalCars" Text="0" FontSize="32" FontWeight="Bold"
+                                   Foreground="White"/>
+                        <TextBlock Text="Автомобилей" FontSize="13"
+                                   Foreground="{DynamicResource AccentBrush}" Margin="0,4,0,0"/>
+                        <TextBlock x:Name="TxtAvailableCars" Text="0 доступных" FontSize="11"
+                                   Foreground="{DynamicResource AccentBrush}" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Total Customers -->
+                <Border Grid.Column="2" CornerRadius="14" Padding="22,18">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="{DynamicResource KpiGreenStart}" Offset="0"/>
+                            <GradientStop Color="{DynamicResource KpiGreenEnd}" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <StackPanel>
+                        <TextBlock Text="👥" FontSize="28" Margin="0,0,0,8"/>
+                        <TextBlock x:Name="TxtTotalCustomers" Text="0" FontSize="32" FontWeight="Bold"
+                                   Foreground="White"/>
+                        <TextBlock Text="Клиентов" FontSize="13"
+                                   Foreground="{DynamicResource AccentGreenBrush}" Margin="0,4,0,0"/>
+                        <TextBlock Text="В базе данных" FontSize="11"
+                                   Foreground="{DynamicResource AccentGreenBrush}" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Sales This Month -->
+                <Border Grid.Column="4" CornerRadius="14" Padding="22,18">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="{DynamicResource KpiOrangeStart}" Offset="0"/>
+                            <GradientStop Color="{DynamicResource KpiOrangeEnd}" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <StackPanel>
+                        <TextBlock Text="💰" FontSize="28" Margin="0,0,0,8"/>
+                        <TextBlock x:Name="TxtMonthlySales" Text="0" FontSize="32" FontWeight="Bold"
+                                   Foreground="White"/>
+                        <TextBlock Text="Продаж (месяц)" FontSize="13"
+                                   Foreground="{DynamicResource AccentOrangeBrush}" Margin="0,4,0,0"/>
+                        <TextBlock x:Name="TxtMonthlyRevenue" Text="₽ 0" FontSize="11"
+                                   Foreground="{DynamicResource AccentOrangeBrush}" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Service Orders -->
+                <Border Grid.Column="6" CornerRadius="14" Padding="22,18">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="{DynamicResource KpiPurpleStart}" Offset="0"/>
+                            <GradientStop Color="{DynamicResource KpiPurpleEnd}" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <StackPanel>
+                        <TextBlock Text="🔧" FontSize="28" Margin="0,0,0,8"/>
+                        <TextBlock x:Name="TxtActiveService" Text="0" FontSize="32" FontWeight="Bold"
+                                   Foreground="White"/>
+                        <TextBlock Text="В сервисе" FontSize="13"
+                                   Foreground="{DynamicResource AccentPurpleBrush}" Margin="0,4,0,0"/>
+                        <TextBlock Text="Активных заявок" FontSize="11"
+                                   Foreground="{DynamicResource AccentPurpleBrush}" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Recent Sales + Top Cars Row -->
+            <Grid Margin="0,0,0,25">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Recent Sales -->
+                <Border Grid.Column="0" Style="{DynamicResource CardBorder}">
+                    <StackPanel>
+                        <TextBlock Text="Последние продажи" FontSize="16" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,0,0,15"/>
+                        <DataGrid x:Name="GridRecentSales" Style="{DynamicResource ModernDataGrid}"
+                                  CanUserResizeColumns="True"
+                                  MaxHeight="250">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Дата" Binding="{Binding SaleDate, StringFormat=\{0:dd.MM.yyyy\}}" Width="95" MinWidth="85"/>
+                                <DataGridTextColumn Header="Автомобиль" Binding="{Binding CarName}" Width="2*" MinWidth="120"/>
+                                <DataGridTextColumn Header="Клиент" Binding="{Binding CustomerName}" Width="2*" MinWidth="110"/>
+                                <DataGridTextColumn Header="Сумма" Binding="{Binding SalePrice, StringFormat=\{0:N0\} ₽}" Width="*" MinWidth="100"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Car Status Breakdown -->
+                <Border Grid.Column="2" Style="{DynamicResource CardBorder}">
+                    <StackPanel>
+                        <TextBlock Text="Статус автопарка" FontSize="16" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,0,0,15"/>
+
+                        <Border CornerRadius="10" Padding="15,12" Margin="0,0,0,10">
+                            <Border.Background>
+                                <SolidColorBrush Color="{DynamicResource BadgeGreen}"/>
+                            </Border.Background>
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Width="10" Height="10" Fill="{DynamicResource AccentGreenBrush}"
+                                         Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="Доступны" Foreground="{DynamicResource TextPrimaryBrush}"
+                                           VerticalAlignment="Center" Width="90"/>
+                                <TextBlock x:Name="TxtStatusAvailable" Text="0"
+                                           Foreground="{DynamicResource AccentGreenBrush}"
+                                           FontWeight="Bold" FontSize="18" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border CornerRadius="10" Padding="15,12" Margin="0,0,0,10">
+                            <Border.Background>
+                                <SolidColorBrush Color="{DynamicResource BadgeOrange}"/>
+                            </Border.Background>
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Width="10" Height="10" Fill="{DynamicResource AccentOrangeBrush}"
+                                         Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="Зарезервированы" Foreground="{DynamicResource TextPrimaryBrush}"
+                                           VerticalAlignment="Center" Width="90"/>
+                                <TextBlock x:Name="TxtStatusReserved" Text="0"
+                                           Foreground="{DynamicResource AccentOrangeBrush}"
+                                           FontWeight="Bold" FontSize="18" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border CornerRadius="10" Padding="15,12">
+                            <Border.Background>
+                                <SolidColorBrush Color="{DynamicResource BadgeBlue}"/>
+                            </Border.Background>
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Width="10" Height="10" Fill="{DynamicResource AccentBrush}"
+                                         Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="Проданы" Foreground="{DynamicResource TextPrimaryBrush}"
+                                           VerticalAlignment="Center" Width="90"/>
+                                <TextBlock x:Name="TxtStatusSold" Text="0"
+                                           Foreground="{DynamicResource AccentBrush}"
+                                           FontWeight="Bold" FontSize="18" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Top Brands -->
+            <Border Style="{DynamicResource CardBorder}">
+                <StackPanel>
+                    <TextBlock Text="Автомобили на складе (топ)" FontSize="16" FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,0,0,15"/>
+                    <DataGrid x:Name="GridTopCars" Style="{DynamicResource ModernDataGrid}"
+                              CanUserResizeColumns="True"
+                              MaxHeight="250">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="#" Binding="{Binding Id}" Width="45" MinWidth="40"/>
+                            <DataGridTextColumn Header="Марка / Модель" Binding="{Binding BrandModel}" Width="2*" MinWidth="130"/>
+                            <DataGridTextColumn Header="Год" Binding="{Binding Year}" Width="55" MinWidth="50"/>
+                            <DataGridTextColumn Header="Цвет" Binding="{Binding Color}" Width="*" MinWidth="80"/>
+                            <DataGridTextColumn Header="Тип топлива" Binding="{Binding FuelType}" Width="*" MinWidth="80"/>
+                            <DataGridTextColumn Header="Цена" Binding="{Binding Price, StringFormat=\{0:N0\} ₽}" Width="*" MinWidth="100"/>
+                            <DataGridTemplateColumn Header="Статус" Width="110" MinWidth="90">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Border CornerRadius="6" Padding="8,3"
+                                                HorizontalAlignment="Left" Margin="0,3">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Status}" Value="Available">
+                                                            <Setter Property="Background" Value="{DynamicResource BadgeGreenBrush}"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Status}" Value="Reserved">
+                                                            <Setter Property="Background" Value="{DynamicResource BadgeOrangeBrush}"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Status}" Value="Sold">
+                                                            <Setter Property="Background" Value="{DynamicResource BadgeBlueBrush}"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <TextBlock FontSize="11" FontWeight="SemiBold">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Status}" Value="Available">
+                                                                <Setter Property="Text" Value="Доступен"/>
+                                                                <Setter Property="Foreground" Value="{DynamicResource AccentGreenBrush}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Status}" Value="Reserved">
+                                                                <Setter Property="Text" Value="Резерв"/>
+                                                                <Setter Property="Foreground" Value="{DynamicResource AccentOrangeBrush}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Status}" Value="Sold">
+                                                                <Setter Property="Text" Value="Продан"/>
+                                                                <Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Border>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

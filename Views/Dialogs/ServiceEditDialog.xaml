@@ -1,0 +1,93 @@
+<Window x:Class="CarDealership.Views.Dialogs.ServiceEditDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Редактировать сервисную запись" Width="560" Height="460" MinWidth="480" MinHeight="380"
+        WindowStartupLocation="CenterOwner" ResizeMode="CanResizeWithGrip"
+        Background="{DynamicResource BackgroundDarkBrush}">
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,25">
+            <TextBlock Text="Редактировать сервисную запись" FontSize="22" FontWeight="Bold"
+                       Foreground="{DynamicResource TextPrimaryBrush}"/>
+            <TextBlock x:Name="TxtSubtitle" FontSize="13"
+                       Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,5,0,0"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Column="0" Grid.Row="0" Margin="0,0,0,15">
+                    <TextBlock Text="Тип работ" Style="{DynamicResource FormLabel}"/>
+                    <ComboBox x:Name="CmbType" Style="{DynamicResource ModernComboBox}">
+                        <ComboBoxItem Content="ТО"/>
+                        <ComboBoxItem Content="Ремонт"/>
+                        <ComboBoxItem Content="Диагностика"/>
+                        <ComboBoxItem Content="Кузовной ремонт"/>
+                        <ComboBoxItem Content="Шиномонтаж"/>
+                        <ComboBoxItem Content="Детейлинг"/>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="0" Margin="0,0,0,15">
+                    <TextBlock Text="Стоимость (₽)" Style="{DynamicResource FormLabel}"/>
+                    <TextBox x:Name="TxtCost" Style="{DynamicResource ModernTextBox}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="0,0,0,15">
+                    <TextBlock Text="Описание работ" Style="{DynamicResource FormLabel}"/>
+                    <TextBox x:Name="TxtDesc" Style="{DynamicResource ModernTextBox}"
+                             Height="65" TextWrapping="Wrap" AcceptsReturn="True"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="2" Margin="0,0,0,15">
+                    <TextBlock Text="Техник" Style="{DynamicResource FormLabel}"/>
+                    <TextBox x:Name="TxtTech" Style="{DynamicResource ModernTextBox}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="2" Margin="0,0,0,15">
+                    <TextBlock Text="Статус" Style="{DynamicResource FormLabel}"/>
+                    <ComboBox x:Name="CmbStatus" Style="{DynamicResource ModernComboBox}">
+                        <ComboBoxItem Content="In Progress"/>
+                        <ComboBoxItem Content="Completed"/>
+                        <ComboBoxItem Content="Cancelled"/>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="3" Margin="0,0,0,15">
+                    <TextBlock Text="Клиент" Style="{DynamicResource FormLabel}"/>
+                    <ComboBox x:Name="CmbCustomer" Style="{DynamicResource ModernComboBox}"
+                              DisplayMemberPath="FullName"/>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Content="Отмена" Padding="20,10" Margin="0,0,10,0"
+                    Click="BtnCancel_Click" Background="{DynamicResource BackgroundCardBrush}"
+                    Foreground="{DynamicResource TextPrimaryBrush}" BorderThickness="0" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Content="Сохранить" Padding="25,10"
+                    Style="{DynamicResource PrimaryButton}" Click="BtnSave_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
