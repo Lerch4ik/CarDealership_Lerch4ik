@@ -6,6 +6,7 @@
     <AssemblyName>CarDealership</AssemblyName>
     <RootNamespace>CarDealership</RootNamespace>
     <Nullable>enable</Nullable>
+    <ApplicationIcon>Assets\icon_car_program.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
